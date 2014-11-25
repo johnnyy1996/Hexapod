@@ -1,43 +1,104 @@
-/* Amrik Singh*/
+/****************************************************************************
+Author: Amrik Singh
+
+This program lets BotBoarduino send commands to lynxMotion SSC-32 board
+to make hexapod robot move forward, which is an eight step(stage) process and 
+each step take 1 second to complete. 
+****************************************************************************/
+
 void setup() {
-  Serial.begin(115200); // begin communication
-  while(!Serial){ // wait while connecting
-    ;
+  Serial.begin(115200); // begin communication using 115.2K baud rate
+  while(!Serial){ 
+    ;// wait while connecting
   }
 }
-void triPodAF(){
-  //pick up right front and rear leg
-  // and pick left middle leg
-  // being it to front
-  Serial.println("#1P1700#0P1700#9P1700#8P1700#20P1300#21P1300T500"); // in 500ms second
-  delay(2000);
+
+/*************************************************************************
+tripodA: right front leg(RFL), right rear leg(RRL) and left middle leg(LML)
+tripodB: left front leg(LFL), left rear leg(LRL) and right middle leg(RML)
+**************************************************************************/
+
+void triPodA_pickUp(){
+//pick up tripodA
+	Serial.println( "#0P1700"   //RRL
+					"#8P1700"   //RFL
+					"#21P1300"  //LML
+					"T1000");   //in 1000ms(1 sec)
+	delay(2000); //2 seconds delay
 }
-void triPodAG(){// tripodA on ground
- Serial.println("#1P1500#9P1500#21P1500T500");
- delay(2000);
+
+void triPodA_forward(){
+// bring tripodA to the front
+	Serial.println("#1P1700"    //RRL
+				   "#9P1700"    //RFL
+				   "#20P1300"   //LML
+				   "T1000");
+	delay(2000);
 }
-void triPodAP(){ //tripodA push legs back // come to neutral position
-  Serial.println("#0P1500#8P1500#20P1500T500");
-  delay(2000);
+
+void triPodA_onGround(){
+// tripodA makes contact with ground 
+	Serial.println( "#1P1500"   //RRL
+					"#9P1500"   //RFL
+					"#21P1500"  //LML
+					"T1000");
+	delay(2000);
 }
-void triPodBF(){
-// tripodB picks up left front and rear leg with right middle legt
- Serial.println("#17P1300#16P1300#25P1300#24P1300#5P1700#4P1700T500");
- delay(2000);
+void triPodA_push(){ 
+// brings back tripodA to the neutral position, while pushing on the ground
+// tripodA moves the robot forward
+	Serial.println( "#0P1500"   //RRL
+					"#8P1500"   //RFL
+					"#20P1500"  //LML
+					"T1000"); 
+	delay(2000);
 }
-void triPodBG(){// tripodB on the ground
- Serial.println("#17P1500#25P1500#5P1500T500"); 
- delay(2000);
+void triPodB_pickUp(){
+// pick up triPodB
+	Serial.println( "#17P1300"  //LRL
+					"#25P1300"  //LFL
+					"#5P1700"   //RML
+					"T10000");
+	delay(2000);
 }
-void triPodBP(){// tripodB pushes // come to neutral position
- Serial.println("#16P1500#24P1500#4P1500T500"); 
+void triPodB_forward(){
+// bring tripodB to the front
+	Serial.println( "#16P1300"  //LRL
+					"#24P1300"  //LFL
+					"#4P1700"   //RML
+					"T1000");
+	delay(2000);
+}
+void triPodB_onGround(){
+// tripodB makes contact with ground
+	Serial.println( "#17P1500"  //LRL
+					"#25P1500"  //LFL
+					"#5P1500"   //RML
+					"T1000"); 
+	delay(2000);
+}
+void triPodB_push(){
+// bring back tripodV to the neutral position, while pushing on the ground
+// tripodB moves the robot forward
+	Serial.println( "#16P1500"  //LRL
+					"#24P1500"  //LFL
+					"#4P1500"   //RML
+					"T1000"); 
  //delay(2000);
 }
 void loop() {
-  triPodAF();//A forward
-  triPodAG();//A ground
-  triPodBF();//B forward
-  triPodAP();//A push
-  triPodBG();//B ground
-  triPodBP();//B push
+/************************************************************************************************ 
+repeat the sequence to make hexapod walk
+in which it picks up tripodA, bring to the front, brings tripodA on ground to hold the weight
+and  pick up tripodB, bring to the front, and "tripodA" push robot forward
+and next tripodB makes contact with ground, also push robot forward
+*************************************************************************************************/
+	triPodA_pickUp(); 
+	triPodA_forward();
+	triPodA_onGround();
+	triPodB_pickUp();
+	triPodB_forward();
+	triPodA_push();
+	triPodB_onGround();
+	triPodB_push();
 }
