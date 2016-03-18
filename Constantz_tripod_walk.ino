@@ -7,11 +7,19 @@ Added parameters to the original code by creating the 3rd degree of freedom to t
 each tibia (lower arm/wrist) and more flexibility in movement.
 */
 
-void setup() {
+void setup() 
+{
   Serial.begin(115200);     // begin communication using 115.2K baud rate
-  while(!Serial){
+  while(!Serial)
+  {
     ;                       // wait while connecting
   }
+  
+  Serial.print("#1p2000 #9p2000 #21p900 #2p2000 #10p2000 #22p900 #17p900 #25p900 #5p2000 #18p900 #26p900 #6p2000 #0p1600 #4p1500 #8p1400 #16p1600 #20p1500 #24p1700");
+  Serial.println();
+  delay(200);
+  Serial.print("#1p1000 #9p1000 #21p2000 #2p1500 #10p1500 #22p1500 #17p2000 #25p2000 #5p1000 #18p1500 #26p1500 #6p1500");
+  delay(600);
   #define MOVETIME 500      //a constant to change the stride duration of each step
 }
 
@@ -21,29 +29,29 @@ tripodB: left front leg(LFL), left rear leg(LRL) and right middle leg(RML)
 */
 
 void triPodA_pickUp(){
-  servoMove(1,1700,9,1700,21,1200,2,1900,10,1900,22,1000,MOVETIME);  
+  servoMove(1,1500,9,1500,21,1500,2,2000,10,2000,22,1000,MOVETIME);  
   }
 void triPodA_forward(){
-  servoMove(0,1700,8,1650,20,1300,2,1900,10,1900,22,1100,MOVETIME); 
+  servoMove(0,1700,8,1650,20,1300,2,2000,10,2000,22,1000,MOVETIME); 
   }
 void triPodA_onGround(){
-  servoMove(1,1500,9,1500,21,1400,2,1900,10,1900,22,1100,MOVETIME);   
+  servoMove(1,1000,9,1000,21,2000,2,1500,10,1500,22,1500,MOVETIME);   
   }
 void triPodA_push(){
-  servoMove(0,1500,8,1500,20,1500,2,1900,10,1900,22,1100,MOVETIME); 
+  servoMove(0,1500,8,1500,20,1500,2,1500,10,1500,22,1500,MOVETIME); 
   }
 
 void triPodB_pickUp(){   
-  servoMove(17,1300,25,1300,5,1550,18,1100,26,1100,6,1900,MOVETIME); 
+  servoMove(17,1500,25,1500,5,1500,18,1000,26,1000,6,2000,MOVETIME); 
   }
 void triPodB_forward(){   
-  servoMove(16,1300,24,1350,4,1700,18,1100,26,1100,6,1900,MOVETIME); 
+  servoMove(16,1300,24,1350,4,1700,18,1000,26,1000,6,2000,MOVETIME); 
   }
 void triPodB_onGround(){   
-  servoMove(17,1500,25,1500,5,1350,18,1100,26,1100,6,1900,MOVETIME);   
+  servoMove(17,2000,25,2000,5,1000,18,1500,26,1500,6,1500,MOVETIME);   
   }
 void triPodB_push(){   
-  servoMove(16,1500,24,1500,4,1500,18,1100,26,1100,6,1900,MOVETIME); 
+  servoMove(16,1500,24,1500,4,1500,18,1500,26,1500,6,1500,MOVETIME); 
   }
 
 /* Comment Section Follows:
@@ -123,12 +131,12 @@ void loop() {
 
   triPodA_pickUp();
   triPodA_forward();
+  triPodB_push();
   triPodA_onGround();
   triPodB_pickUp();
   triPodB_forward();
   triPodA_push(); 		// this is what propels the hexapod forward
   triPodB_onGround();
-  triPodB_push(); 		// this also propels the hexapod forward
  }
 
 
