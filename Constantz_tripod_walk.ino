@@ -32,26 +32,26 @@ void triPodA_pickUp(){
   servoMove(1,1500,9,1500,21,1500,2,2000,10,2000,22,1000,MOVETIME);  
   }
 void triPodA_forward(){
-  servoMove(0,1700,8,1650,20,1300,2,2000,10,2000,22,1000,MOVETIME); 
+  servoMove(0,1800,8,1500,20,1500,2,2000,10,2000,22,1000,MOVETIME); 
   }
 void triPodA_onGround(){
   servoMove(1,1000,9,1000,21,2000,2,1500,10,1500,22,1500,MOVETIME);   
   }
 void triPodA_push(){
-  servoMove(0,1500,8,1500,20,1500,2,1500,10,1500,22,1500,MOVETIME); 
+  servoMove(0,1700,8,1300,20,1800,2,1500,10,1500,22,1500,MOVETIME); 
   }
 
 void triPodB_pickUp(){   
   servoMove(17,1500,25,1500,5,1500,18,1000,26,1000,6,2000,MOVETIME); 
   }
 void triPodB_forward(){   
-  servoMove(16,1300,24,1350,4,1700,18,1000,26,1000,6,2000,MOVETIME); 
+  servoMove(16,1300,24,1800,4,1500,18,1000,26,1000,6,2000,MOVETIME); 
   }
 void triPodB_onGround(){   
   servoMove(17,2000,25,2000,5,1000,18,1500,26,1500,6,1500,MOVETIME);   
   }
 void triPodB_push(){   
-  servoMove(16,1500,24,1500,4,1500,18,1500,26,1500,6,1500,MOVETIME); 
+  servoMove(16,1400,24,1900,4,1300,18,1500,26,1500,6,1500,MOVETIME); 
   }
 
 /* Comment Section Follows:
