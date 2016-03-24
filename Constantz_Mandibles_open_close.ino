@@ -24,7 +24,11 @@ void closeMouth() //sends 2 servos comands to make mandibles close
 {
   Serial.print ("#28P1700 #29P1200");
   Serial.println();
-  delay(1000);
+  delay (500)
+  if (QP 28 <cr> != 1700 || QP 29 <cr> != 1200)
+	Serial.print ("#28P" + (QP 28)*10) + "#29P" + (QP 29)*10);
+  Serial.println();
+  delay(500);
 }
 
 
@@ -33,5 +37,6 @@ void loop()
 {
   openMouth();
   closeMouth();
+  delay(5000);
 
 }
