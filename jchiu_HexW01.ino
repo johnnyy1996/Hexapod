@@ -4,12 +4,12 @@
  */
 
 String servoPosition;
-String servoPin[18] = {"#0","#8","#20",         /* TripodA shoulder    Indices 0-5 are shoulders */
-                       "#16","#24","#4",        /* TripodB shoulder                              */
-                       "#1","#9","#21",         /* TripodA elbow       Indices 6-11 are elbows   */
-                       "#17","#25","#5",        /* TripodB elbow                                 */
-                       "#2","#10","#22",        /* TripodA wrist       Indices 12-17 are wrists  */
-                       "#18","#26","#6"};       /* TripodB wrist                                 */
+String servoPin[18] = {"#0","#8","#20",         /* TripodA coxa    Indices 0-5 are coxa      */
+                       "#16","#24","#4",        /* TripodB coxa                              */
+                       "#1","#9","#21",         /* TripodA femur   Indices 6-11 are femur    */
+                       "#17","#25","#5",        /* TripodB femur                             */
+                       "#2","#10","#22",        /* TripodA tibia   Indices 12-17 are tibia   */
+                       "#18","#26","#6"};       /* TripodB tibia                             */
                        
 String servoArray[18];                          /* Create an array to store the servo positions for each pin */
 
@@ -49,17 +49,17 @@ void updateServoPosition(String (&servoArray)[18], const String (&servoPin)[18],
   int startIndex;
   int endIndex;
 
-  if(servoType == "shoulder") {
+  if(servoType == "coxa") {
     startIndex = 0;
     endIndex = 5;
   }
 
-  if(servoType == "elbow") {
+  if(servoType == "femur") {
     startIndex = 6;
     endIndex = 11;
   }
 
-  if(servoType == "wrist") {
+  if(servoType == "tibia") {
     startIndex = 12;
     endIndex = 17;
   }
@@ -91,8 +91,8 @@ void commandServo(String (&servoArray)[18]) {
   for(int i = 0; i < 18; i++) {
     Serial.print(servoArray[i]);
     Serial.println();
-    delay(2000);                                  /* Time delay to allow servos to move */
   }
+  delay(2000);                                  /* Time delay to allow servos to move */
 }
 
 void loop() {
@@ -102,9 +102,9 @@ void loop() {
 
   /* Change positions of servos and update commands (contracting)
      Update the servos according to type */
-  updateServoPosition(servoArray, servoPin, "shoulder", "900");
-  updateServoPosition(servoArray, servoPin, "elbow", "900");
-  updateServoPosition(servoArray, servoPin, "wrist", "900");
+  updateServoPosition(servoArray, servoPin, "coxa", "900");
+  updateServoPosition(servoArray, servoPin, "femur", "900");
+  updateServoPosition(servoArray, servoPin, "tibia", "900");
 
   /* Write the updated positions to all the servos and move */
   commandServo(servoArray);
