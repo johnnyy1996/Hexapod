@@ -1,8 +1,8 @@
 /*  Author: Joyce Chiu
  *  This program was created for the "Constantz" LynxMotion Hexapod robot. It utilizes the
- *	class "servoIO" to test for servo angle accuracy. We test if the servo is able to 
- *	move to the correct angle as we send commands to servo to move to 0, 30, 60, 90, 120, 
- *	150 and 180 degrees.
+ *  class "servoIO" to test for servo angle accuracy. We test if the servo is able to 
+ *  move to the correct angle as we send commands to servo to move to 0, 30, 60, 90, 120, 
+ *  150 and 180 degrees.
  */
 
 #include <servoIO.h>
