@@ -1,6 +1,5 @@
-int valL = 0, valR = 0, counter = 0, openVal [100], closeVal[100];
+int valL = 0, valR = 0, counter = 0;
 unsigned long time;
-char qp;
 bool closed = 1;
 void setup() 
 {
@@ -22,21 +21,19 @@ void loop()
     Serial.print ("#28P1200 #29P1700");
     Serial.println();
     time = millis();
-    while ((millis() - time) <= 500)
+    while ((millis() - time) < 500)
     {
       Serial.print("time: ");
       Serial.print(millis()-time);
       Serial.println();
       valL = digitalRead(5);
       valR = digitalRead(10);
-      Serial.print("L "); 
       Serial.print(valL);
-      Serial.println();
-      Serial.print("R "); 
+      Serial.print("\t");
       Serial.print(valR);
       Serial.println();
       Serial.println();
-      delay(50);
+      delay(10);
     }
     closed=0;
   }
@@ -46,17 +43,15 @@ void loop()
     Serial.print ("#28P1700 #29P1300");
     Serial.println();
     time = millis();
-    while ((millis() - time) <= 500)
+    while ((millis() - time) < 500)
     {
       Serial.print("time: ");
       Serial.print(millis()-time);
       Serial.println();
       valL = digitalRead(5);
       valR = digitalRead(10);
-      Serial.print("L "); 
       Serial.print(valL);
-      Serial.println();
-      Serial.print("R "); 
+      Serial.print("\t");
       Serial.print(valR);
       Serial.println();
       Serial.println();
@@ -67,20 +62,8 @@ void loop()
   counter ++;
   if (counter == 100)
   {
-    Serial.print ("trial Completed, Printing Data **********************");
+    Serial.print ("trial Completed **********************");
     Serial.println();
-    Serial.print ("Open val");
-    Serial.print ("\t");
-    Serial.print ("Close val");
-    Serial.print ("\t");
-    Serial.println();
-    for (int i=0; i<100; i++)
-    {
-      Serial.print (openVal[i]);
-      Serial.print ("\t\t");
-      Serial.print (closeVal[i]);
-      Serial.println();
-    }
     while(counter ==100);
     {
       ;
