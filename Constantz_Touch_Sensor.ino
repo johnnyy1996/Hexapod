@@ -1,4 +1,5 @@
 int valL = 0, valR = 0, counter = 0, openVal [100], closeVal[100];
+unsigned long time;
 char qp;
 bool closed = 1;
 void setup() 
@@ -20,18 +21,23 @@ void loop()
     Serial.print("Open  ");
     Serial.print ("#28P1200 #29P1700");
     Serial.println();
-    delay(500);
-    valL = digitalRead(5);
-    valR = digitalRead(10);
-    Serial.print("L "); 
-    Serial.print(valL);
-    Serial.println();
-    Serial.print("R "); 
-    Serial.print(valR);
-    Serial.println();
-    Serial.println();
-    if (!valL && !valR)
-      openVal [counter] = 1;
+    time = millis();
+    while ((millis() - time) <= 500)
+    {
+      Serial.print("time: ");
+      Serial.print(millis()-time);
+      Serial.println();
+      valL = digitalRead(5);
+      valR = digitalRead(10);
+      Serial.print("L "); 
+      Serial.print(valL);
+      Serial.println();
+      Serial.print("R "); 
+      Serial.print(valR);
+      Serial.println();
+      Serial.println();
+      delay(50);
+    }
     closed=0;
   }
   if (!closed)
@@ -39,18 +45,23 @@ void loop()
     Serial.print("Close  ");
     Serial.print ("#28P1700 #29P1300");
     Serial.println();
-    delay (500);
-    valL = digitalRead(5);
-    valR = digitalRead(10);
-    Serial.print("L "); 
-    Serial.print(valL);
-    Serial.println();
-    Serial.print("R "); 
-    Serial.print(valR);
-    Serial.println();
-    Serial.println();
-    if (valL && valR)
-      closeVal [counter] = 1;
+    time = millis();
+    while ((millis() - time) <= 500)
+    {
+      Serial.print("time: ");
+      Serial.print(millis()-time);
+      Serial.println();
+      valL = digitalRead(5);
+      valR = digitalRead(10);
+      Serial.print("L "); 
+      Serial.print(valL);
+      Serial.println();
+      Serial.print("R "); 
+      Serial.print(valR);
+      Serial.println();
+      Serial.println();
+      delay(10);
+    }
     closed=1;
   }
   counter ++;
