@@ -5,6 +5,11 @@ which is an eight step (stage) process and each step take 1 second to complete. 
 
 Added parameters to the original code by creating the 3rd degree of freedom to the legs by enabling movement for 
 each tibia (lower arm/wrist) and more flexibility in movement.
+
+EDITED BY VICTOR CUEVAS
+Refined original parameters in order to give the robot a better walking movement
+Also included servos which were originally missing which cause the robot to drag
+
 */
 
 void setup() 
