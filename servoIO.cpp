@@ -76,7 +76,7 @@ void servoIO::updateServoPosition() {
 
 void servoIO::writeToServo() {
   Serial.print("#" + String(servo_number) + 
-               "P" + String(servo_position);
+               "P" + String(servo_position));
   return;
 }
 
