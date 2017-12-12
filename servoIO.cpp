@@ -7,6 +7,7 @@
 
 servoIO::servoIO() {
   servo_position = 1500;
+  not_reverse = 1;
 }
 
 /*                   servoIO(int pin)                   */
@@ -18,6 +19,7 @@ servoIO::servoIO() {
 servoIO::servoIO(int pin) {
   servo_number = pin;
   servo_position = 1500;
+  not_reverse = 1;
 }
 
 /*          void setServoNumer(int pin)                 */
@@ -104,3 +106,37 @@ void servoIO::setErrorFlag() {
   else error_flag = true;
   return;
 }
+
+/*
+ * void setReverse(bool reverseMovement)
+ * Decides whether the servo is reversed or not
+ */
+void servoIO::setReverse(bool reverseMovement){
+  if(reverseMovement){
+    not_reverse = -1;
+  }
+  else{
+    not_reverse = 1;
+  }
+  return;
+}
+
+/*
+ * int notReverse();
+ * This method returns 1 if the servo moves as intended
+ * and -1 if the servo moves in reverse
+ */
+int servoIO::notReverse(){
+  return not_reverse;
+}
+
+/*
+ * operator=(servoIO other)
+ * This operator overload creates a way to equate one servoIO to another
+ * This is also the function called when passing a servoIO
+ */
+servoIO servoIO::operator = (servoIO other){
+  this->servo_number = other.servo_number;
+  this->not_reverse = other.notReverse();
+}
+

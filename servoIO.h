@@ -4,6 +4,8 @@
 #define servoIO_h 
 
 class servoIO {
+private:
+  int not_reverse;                     // This variable was create specifically for the robot Contantz
 public:
   double value;                     // Input value provided by artificial neural network. Range is [0,1].
   int servo_number;                 // Corresponds to the pin number of the servo.
@@ -29,7 +31,10 @@ public:
   bool isMovementCompleted();       // This method obtains the query movement status of the servo and
                                     // checks if the movement has been completed or if it is still in
                                     // progress. Return true if movement is completed, false otherwise.
-  void setErrorFlag();              // This method sets the state of the error flag to true or false.     
+  void setErrorFlag();              // This method sets the state of the error flag to true or false.
+  void setReverse(bool reverseMovement); // This method handles the servos that move reverse of the way stated in the SSC-32 manual
+  int notReverse();                 // This method returns whether the servo moves in reverse or not;
+  servoIO operator= (servoIO other);        // This method allows passing servoIO classes to pass the way you intend.
 };
 
 #endif
