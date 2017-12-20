@@ -35,15 +35,18 @@ void walkForward(){
   A.forward();
   if(firstMovement){
     firstMovement = false;
+    B.stand();
   }
   else{
     B.pushFoward(); 
   }
   A.down();
+  B.stand();
   B.lift();
   B.forward();
   A.pushFoward();
   B.down();
+  A.stand();
   
 }
 /*
@@ -69,15 +72,15 @@ void setup() {
         }
     }
     for(int j = 0; j < 3; j++){
-      ApodServos[i+(3*j)].setServoPosition(DEFAULT_POSITION);
+      //ApodServos[i+(3*j)].setServoPosition(DEFAULT_POSITION);
       ApodServos[i+1+(3*j)].setServoPosition(DEFAULT_POSITION + (ApodServos[i+1+(3*j)].notReverse()*500));
       ApodServos[i+2+(3*j)].setServoPosition(DEFAULT_POSITION);
     }
-    /*
-    ApodServos[i].setServoPosition(DEFAULT_POSITION + (ApodServos[i].notReverse()*250));
-    ApodServos[i+3].setServoPosition(DEFAULT_POSITION + (ApodServos[i+3].notReverse()*250));
+    
+    ApodServos[i].setServoPosition(DEFAULT_POSITION);
+    ApodServos[i+3].setServoPosition(DEFAULT_POSITION);
     ApodServos[i+6].setServoPosition(DEFAULT_POSITION + (ApodServos[i+6].notReverse()*250));
-    */
+    
   }
   
   //The two tripods declared here.
@@ -95,6 +98,7 @@ void setup() {
     ApodServos[i].writeToServo();
   }
   Serial.println("T1000");
+  delay(1000);
 }
 
 /*

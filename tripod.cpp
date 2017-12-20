@@ -42,8 +42,21 @@ void tripod::lift(){
     verticalHip[i].writeToServo();
     knee[i].writeToServo();
   }
+}
+
+/*
+ * void stand()
+ * 
+ * This keeps the Robot standing.
+ */
+void tripod::stand(){
+  for (int i = 0; i < 3; i++){
+    horizontalHip[i].writeToServo();
+    verticalHip[i].writeToServo();
+    knee[i].writeToServo();
+  }
   Serial.println("T1000");
-  delay(1000);
+  delay(2000);
 }
 /*
  * void forward()
@@ -52,14 +65,12 @@ void tripod::lift(){
  */
 void tripod::forward(){
   horizontalHip[0].setServoPosition(DEFAULT_POSITION - (horizontalHip[0].notReverse()*250));
-  horizontalHip[1].setServoPosition(DEFAULT_POSITION - (horizontalHip[1].notReverse()*250));
+  horizontalHip[1].setServoPosition(DEFAULT_POSITION);
   horizontalHip[2].setServoPosition(DEFAULT_POSITION - (horizontalHip[2].notReverse()*250));
   
   for (int i = 0; i < 3; i++){
     horizontalHip[i].writeToServo();
   }
-  Serial.println("T1000");
-  delay(1000);
 }
 
 /*
@@ -72,10 +83,10 @@ void tripod::down(){
     verticalHip[i].setServoPosition(DEFAULT_POSITION + (verticalHip[i].notReverse()*500));
   }
   for (int i = 0; i < 3; i++){
+    horizontalHip[i].writeToServo();
     verticalHip[i].writeToServo();
+    knee[i].writeToServo();
   }
-  Serial.println("T1000");
-  delay(1000);
 }
 
 /*
@@ -84,18 +95,24 @@ void tripod::down(){
  * This function pushes forward for a forward walk
  */
 void tripod::pushFoward(){
+  
   for(int i = 0; i < 3; i++){
-    verticalHip[i].setServoPosition(DEFAULT_POSITION + (verticalHip[i].notReverse()*750));
-    horizontalHip[i].setServoPosition(DEFAULT_POSITION + (horizontalHip[i].notReverse()*250));
+    //horizontalHip[i].setServoPosition(DEFAULT_POSITION + (horizontalHip[i].notReverse()*250));
+    verticalHip[i].setServoPosition(DEFAULT_POSITION + (verticalHip[i].notReverse()*500));
+    knee[i].setServoPosition(DEFAULT_POSITION);
   }
-  /*
-  horizontalHip[0].setServoPosition(DEFAULT_POSITION + (horizontalHip[0].notReverse()*250));
+  
+  horizontalHip[0].setServoPosition(DEFAULT_POSITION);
   horizontalHip[1].setServoPosition(DEFAULT_POSITION + (horizontalHip[1].notReverse()*250));
   horizontalHip[2].setServoPosition(DEFAULT_POSITION + (horizontalHip[2].notReverse()*250));
-  */
-  knee[0].setServoPosition(DEFAULT_POSITION + (knee[0].notReverse()*250));
+  /*
+  verticalHip[0].setServoPosition(DEFAULT_POSITION + (verticalHip[0].notReverse()*500));
+  verticalHip[1].setServoPosition(DEFAULT_POSITION + (verticalHip[1].notReverse()*750));
+  verticalHip[2].setServoPosition(DEFAULT_POSITION + (verticalHip[2].notReverse()*500));
+  knee[0].setServoPosition(DEFAULT_POSITION + (knee[0].notReverse()*500));
   knee[1].setServoPosition(DEFAULT_POSITION - (knee[1].notReverse()*250));
-  knee[2].setServoPosition(DEFAULT_POSITION + (knee[2].notReverse()*250));
+  knee[2].setServoPosition(DEFAULT_POSITION);
+  */
   
   for (int i = 0; i < 3; i++){
     horizontalHip[i].writeToServo();
@@ -103,7 +120,7 @@ void tripod::pushFoward(){
     verticalHip[i].writeToServo();
   }
   Serial.println("T1000");
-  delay(1000);
+  delay(2000);
 }
 
 /*

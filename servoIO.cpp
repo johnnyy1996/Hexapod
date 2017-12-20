@@ -137,6 +137,7 @@ int servoIO::notReverse(){
  */
 servoIO servoIO::operator = (servoIO other){
   this->servo_number = other.servo_number;
+  this->servo_position = other.servo_position;
   this->not_reverse = other.notReverse();
 }
 

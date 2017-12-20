@@ -22,6 +22,7 @@ class tripod{
   tripod();
   tripod(servoIO HH1, servoIO HH2, servoIO HH3,servoIO VH1, servoIO VH2, servoIO VH3, servoIO KN1, servoIO KN2, servoIO KN3);
   void lift();
+  void stand();
   void forward();
   void down();
   void pushFoward();
